@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
+import re
 
 dataTables = []
 
@@ -27,9 +28,7 @@ for x in range(0,20200,200):
             length = len(df)
             df.loc[length] = row
     dataTables.append(df)
+for link in soup.findAll('a', attrs={'href': re.compile("^https://")}):
+    print(link.get('href'))
 
-
-
-
-for x in dataTables:
-    print(x)
+    
